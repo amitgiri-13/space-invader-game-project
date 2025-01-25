@@ -6,35 +6,35 @@ from pygame import mixer
 pygame.init()
 #create a screen
 screen = pygame.display.set_mode((600,600))
-background = pygame.image.load('data/sky.jpg')
+background = pygame.image.load('data/images/sky.jpg')
 
 #background sound
-mixer.music.load("data/spacebg1.wav")
+mixer.music.load("data/sounds/spacebg1.wav")
 mixer.music.play(1)
     
-mixer.music.load("data/spacebg.wav")
+mixer.music.load("data/sounds/spacebg.wav")
 mixer.music.play(-1)
 
 #title and icon
 pygame.display.set_caption("EXO ENEMY")
-icon = pygame.image.load('data/ufo.png')
+icon = pygame.image.load('data/images/ufo.png')
 pygame.display.set_icon(icon)
 
 #start of the game 
-start_image = pygame.image.load('data/play.jpg')
+start_image = pygame.image.load('data/images/play.jpg')
 start_font = pygame.font.Font('freesansbold.ttf',100)
 start_x = 0
 start_y = 0
 start = False
 #end of the game 
-end_image = pygame.image.load('data/playagain.jpg')
+end_image = pygame.image.load('data/images/playagain.jpg')
 end_x = 0
 end_y = 0
 end = False
 gameover = False
 
 #player
-player_image = pygame.image.load('data/spaceship1.png')
+player_image = pygame.image.load('data/images/spaceship1.png')
 player_x = 270
 player_y = 500
 player_xchange = 0
@@ -50,17 +50,17 @@ enemy_ychange = []
 
 num_of_enemy = 5
 for i in range(num_of_enemy):
-    enemy_image.append(pygame.image.load('data/alien.png'))
+    enemy_image.append(pygame.image.load('data/images/alien.png'))
     enemy_x.append(random.randint(0,540))
     enemy_y.append(random.randint(0,0))
-    enemy_image.append(pygame.image.load('data/alien1.png'))
+    enemy_image.append(pygame.image.load('data/images/alien1.png'))
     enemy_x.append(random.randint(0,540))
     enemy_y.append(random.randint(0,0))
     enemy_xchange.append(.3)
     enemy_ychange.append(50)
   
 #bullet
-bullet_image = pygame.image.load('data/bullet1.png')
+bullet_image = pygame.image.load('data/images/bullet1.png')
 bullet_x = 0
 bullet_y = 500
 bullet_xchange = .3
@@ -141,7 +141,7 @@ while running:
                 player_xchange = 0.5
             if event.key==pygame.K_SPACE:
                 if bullet_state is "ready":
-                    bullet_sound = mixer.Sound('data/bullet.wav')
+                    bullet_sound = mixer.Sound('data/sounds/bullet.wav')
                     bullet_sound.play()
                     bullet_x = player_x
                     fire_bullet(bullet_x,bullet_y)
@@ -175,14 +175,14 @@ while running:
                 enemy_ychange = []
                 num_of_enemy = 3
                 for i in range(num_of_enemy):
-                    enemy_image.append(pygame.image.load('data/alien1.png'))
+                    enemy_image.append(pygame.image.load('data/images/alien1.png'))
                     enemy_x.append(random.randint(0,540))
                     enemy_y.append(random.randint(0,10))
                     enemy_xchange.append(.3)
                     enemy_ychange.append(50)
                 #initial score
                 score_value = 0
-                restart_sound = mixer.Sound('data/restart.wav')
+                restart_sound = mixer.Sound('data/sounds/restart.wav')
                 restart_sound.play()
                         
     if start and not end:    
@@ -200,7 +200,7 @@ while running:
                     enemy_y[j]= 2000
                     gameover = True
                     end = True
-                    gameover_sound = mixer.Sound('data/missionfail.wav')
+                    gameover_sound = mixer.Sound('data/sounds/missionfail.wav')
                     gameover_sound.play() 
                     break
                
@@ -227,9 +227,7 @@ while running:
                     high_score = score_value
                 enemy_x[i] = random.randint(0,540)
                 enemy_y[i] = 0
-                enemy_sound = mixer.Sound('data/die.wav')
-                enemy_sound.play()
-                enemy_sound_2 = mixer.Sound('data/dead.wav')
+                enemy_sound_2 = mixer.Sound('data/sounds/dead.wav')
                 enemy_sound_2.play()
             enemy(enemy_x[i],enemy_y[i],i)
 
